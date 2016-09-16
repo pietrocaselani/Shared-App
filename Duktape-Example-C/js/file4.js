@@ -1,0 +1,3 @@
+function displayOutVarName() {
+    print(name);
+}
