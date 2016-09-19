@@ -1,7 +1,8 @@
-package io.github.pietrocaselani.helloworld;
+package io.github.pietrocaselani.httptest;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -26,15 +27,27 @@ public class MainActivity extends AppCompatActivity {
 		final String script = loadJSFile();
 		mDuktape.evaluate(script);
 
-		final JSFunction jsFunction = mDuktape.get("hello", JSFunction.class);
+		final Delegate delegate = new Delegate() {
+			@Override public void callback(final String message) {
+				((TextView) findViewById(R.id.activity_main_textview_result)).setText(message);
+			}
+		};
 
-		findViewById(R.id.activity_main_button_hello).setOnClickListener(new OnClickListener() {
+		mDuktape.set("delegate", Delegate.class, delegate);
+
+		final JSFunction downloader = mDuktape.get("downloader", JSFunction.class);
+
+		findViewById(R.id.activity_main_button_executeTest).setOnClickListener(new OnClickListener() {
 			@Override public void onClick(final View v) {
 				final String name = ((TextView) findViewById(R.id.activity_main_edittext_name)).getText().toString();
 
-				final String result = jsFunction.sayHello(name);
+				downloader.executeTest(name);
+			}
+		});
 
-				((TextView) findViewById(R.id.activity_main_textview_result)).setText(result);
+		findViewById(R.id.activity_main_button_download).setOnClickListener(new OnClickListener() {
+			@Override public void onClick(final View v) {
+				downloader.download();
 			}
 		});
 	}
@@ -46,8 +59,17 @@ public class MainActivity extends AppCompatActivity {
 		super.onDestroy();
 	}
 
+	interface Delegate {
+		void callback(String message);
+	}
+
+	interface JSFunction {
+		void executeTest(String name);
+		void download();
+	}
+
 	private String loadJSFile() {
-		return loadFileFromAssets("hello.js");
+		return loadFileFromAssets("downloader.js");
 	}
 
 	private String loadFileFromAssets(String fileName) {
@@ -64,9 +86,5 @@ public class MainActivity extends AppCompatActivity {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	interface JSFunction {
-		String sayHello(String name);
 	}
 }

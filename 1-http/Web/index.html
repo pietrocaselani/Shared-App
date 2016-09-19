@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>1-http</title>
+	</head>
+	<script src="../js/downloader.js"></script>
+	<script type="text/javascript">
+		var delegate = {
+			callback: function(message) {
+				alert(message);
+			}
+		};
+
+		downloader.executeTest["delegate"] = delegate;
+
+		function submitName() {
+			var name = document.getElementById("name").value;
+			downloader.executeTest(name);
+		}
+	</script>
+	<body>
+		First name:
+		<input type="text" id="name">
+		<br>
+		<br>
+		<button onclick="submitName()">ExecuteTest</button>
+	</body>
+</html>
