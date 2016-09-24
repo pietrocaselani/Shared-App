@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,8 +25,11 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxi-A0-iQY">
                                 <state key="normal" title="Download"/>
+                                <connections>
+                                    <action selector="download:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8vW-Xg-UMu"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUX-3A-fEh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUX-3A-fEh">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -41,16 +43,16 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="k6H-TH-JbK" firstAttribute="top" secondItem="Fv4-mY-54M" secondAttribute="bottom" constant="8" id="1fo-Q7-Zob"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="k6H-TH-JbK" secondAttribute="leading" id="JNJ-Gv-gpQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="sxi-A0-iQY" secondAttribute="trailing" constant="10" id="UVU-ET-scP"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nUX-3A-fEh" secondAttribute="trailing" constant="10" id="XYz-Za-XEe"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Fv4-mY-54M" secondAttribute="trailing" constant="10" id="a0g-4d-l0R"/>
-                            <constraint firstItem="sxi-A0-iQY" firstAttribute="top" secondItem="Fv4-mY-54M" secondAttribute="bottom" constant="8" id="cx0-0g-rTg"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Fv4-mY-54M" secondAttribute="leading" id="fAc-Ai-uEG"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="nUX-3A-fEh" secondAttribute="leading" id="heQ-mY-gsn"/>
-                            <constraint firstItem="Fv4-mY-54M" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="jXQ-jH-GB8"/>
-                            <constraint firstItem="nUX-3A-fEh" firstAttribute="top" secondItem="Fv4-mY-54M" secondAttribute="bottom" constant="79" id="srR-fk-azq"/>
+                            <constraint firstAttribute="trailing" secondItem="Fv4-mY-54M" secondAttribute="trailing" constant="20" symbolic="YES" id="2bM-4q-ggA"/>
+                            <constraint firstItem="Fv4-mY-54M" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="8Uw-MI-ivm"/>
+                            <constraint firstItem="nUX-3A-fEh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="BNT-uY-B3C"/>
+                            <constraint firstItem="k6H-TH-JbK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="BfQ-fv-tY2"/>
+                            <constraint firstAttribute="trailing" secondItem="nUX-3A-fEh" secondAttribute="trailing" constant="20" symbolic="YES" id="CLM-6v-vOv"/>
+                            <constraint firstAttribute="trailing" secondItem="sxi-A0-iQY" secondAttribute="trailing" constant="20" symbolic="YES" id="ISS-Gu-6Me"/>
+                            <constraint firstItem="k6H-TH-JbK" firstAttribute="top" secondItem="Fv4-mY-54M" secondAttribute="bottom" constant="8" symbolic="YES" id="bfj-o5-QPj"/>
+                            <constraint firstItem="sxi-A0-iQY" firstAttribute="top" secondItem="Fv4-mY-54M" secondAttribute="bottom" constant="8" symbolic="YES" id="ibE-G5-BTC"/>
+                            <constraint firstItem="nUX-3A-fEh" firstAttribute="top" secondItem="k6H-TH-JbK" secondAttribute="bottom" constant="8" symbolic="YES" id="jzD-WH-fcl"/>
+                            <constraint firstItem="Fv4-mY-54M" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="rUr-1V-JxX"/>
                         </constraints>
                     </view>
                     <connections>

@@ -11,5 +11,7 @@
 @protocol DelegateExport <JSExport>
 
 - (void)callback:(NSString *)message;
+- (void)onSuccess:(NSDictionary *)json;
+- (void)onError:(NSString *)errorMessage;
 
 @end

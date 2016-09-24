@@ -6,33 +6,39 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import com.squareup.duktape.Duktape;
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.Function;
+import org.mozilla.javascript.Scriptable;
+import org.mozilla.javascript.ScriptableObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 
 public class MainActivity extends AppCompatActivity {
-
-	private Duktape mDuktape;
 
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		mDuktape = Duktape.create();
+		final Context context = Context.enter();
+		context.setOptimizationLevel(-1);
+		final ScriptableObject scope = context.initStandardObjects();
 
-		final String script = loadJSFile();
-		mDuktape.evaluate(script);
+		try {
+			context.evaluateReader(scope, loadJSFile(), "hello", 1, null);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 
-		final JSFunction jsFunction = mDuktape.get("hello", JSFunction.class);
+		final Scriptable helloObject = (Scriptable) scope.get("hello");
+		final Function helloFunction = (Function) helloObject.get("sayHello", helloObject);
 
 		findViewById(R.id.activity_main_button_hello).setOnClickListener(new OnClickListener() {
 			@Override public void onClick(final View v) {
 				final String name = ((TextView) findViewById(R.id.activity_main_edittext_name)).getText().toString();
 
-				final String result = jsFunction.sayHello(name);
+				final String result = (String) helloFunction.call(context, helloObject, helloObject, new Object[]{name});
 
 				((TextView) findViewById(R.id.activity_main_textview_result)).setText(result);
 			}
@@ -41,32 +47,12 @@ public class MainActivity extends AppCompatActivity {
 
 	@Override protected void onDestroy() {
 		if (isFinishing())
-			mDuktape.close();
+			Context.exit();
 
 		super.onDestroy();
 	}
 
-	private String loadJSFile() {
-		return loadFileFromAssets("hello.js");
-	}
-
-	private String loadFileFromAssets(String fileName) {
-		try {
-			final InputStream inputStream = getAssets().open(fileName);
-
-			final BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
-			final StringBuilder total = new StringBuilder();
-			String line;
-			while ((line = r.readLine()) != null)
-				total.append(line);
-
-			return total.toString();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	interface JSFunction {
-		String sayHello(String name);
+	private Reader loadJSFile() throws IOException {
+		return new InputStreamReader(getAssets().open("hello.js"));
 	}
 }

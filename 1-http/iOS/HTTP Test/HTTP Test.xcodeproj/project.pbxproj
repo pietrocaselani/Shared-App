@@ -31,6 +31,7 @@
 		4F5063D51D8D2CD4005BCACC /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		4F5063D71D8D2CE1005BCACC /* downloader.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = downloader.js; path = ../../../js/downloader.js; sourceTree = "<group>"; };
 		4F5063D91D8D2D03005BCACC /* DelegateExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateExport.h; sourceTree = "<group>"; };
+		DF368002FC0C25C684E23152 /* HTTPExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPExport.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +76,7 @@
 				4F5063CE1D8D2CC5005BCACC /* Info.plist */,
 				4F5063BD1D8D2CC5005BCACC /* Supporting Files */,
 				4F5063D91D8D2D03005BCACC /* DelegateExport.h */,
+				DF368002FC0C25C684E23152 /* HTTPExport.h */,
 			);
 			path = "HTTP Test";
 			sourceTree = "<group>";
